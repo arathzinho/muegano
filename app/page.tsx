@@ -10,41 +10,54 @@ import InteractiveCards from "./components/InteractiveCards";
 import SelectedWorks from "./components/SelectedWorks";
 import DualLocations from "./components/DualLocations";
 import FooterAgency from "./components/FooterAgency";
+import CustomCursor from "./CustomCursor";
 
-// Carga dinámica de la escena 3D sin SSR
+// 1. Escultura central 3D (sin SSR)
 const Scene3D = dynamic(() => import("./Scene3D"), { ssr: false });
+
+// 2. Túnel Cilíndrico estilo Resn / Daddy Yankee (sin SSR)
+const CylinderGallery3D = dynamic(
+  () => import("./components/CylinderGallery3D"),
+  { ssr: false }
+);
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-[#070709] text-white selection:bg-amber-400 selection:text-black">
-      {/* 1. Malla de grano analógico */}
+    <main className="relative min-h-screen bg-[#050507] text-white selection:bg-amber-400 selection:text-black overflow-x-clip">
+      {/* 1. Malla de grano y textura cinematográfica */}
       <NoiseOverlay />
 
-      {/* 2. Escultura interactiva Three.js con postprocesado */}
+      {/* 2. Cursor reactivo */}
+      <CustomCursor />
+
+      {/* 3. Escultura orgánica de cristal de fondo */}
       <Scene3D />
 
-      {/* 3. Barra de navegación con reloj dual CDMX/GDL */}
+      {/* 4. Barra de navegación flotante */}
       <Navbar />
 
-      {/* 4. Hero editorial principal */}
+      {/* 5. Portada principal (Hero) */}
       <HeroVisual />
 
-      {/* 5. Cinta infinita de marcas */}
+      {/* 6. Matriz de marcas con scroll horizontal */}
       <BrandMarquee />
 
-      {/* 6. Indicadores y métricas */}
+      {/* 7. El túnel 3D infinito estilo Resn / Daddy Yankee */}
+      <CylinderGallery3D />
+
+      {/* 8. Métricas y datos de impacto */}
       <MetricsCounter />
 
-      {/* 7. Matriz interactiva de servicios */}
+      {/* 9. Capacidades interactivas */}
       <InteractiveCards />
 
-      {/* 8. Proyectos y casos de estudio */}
+      {/* 10. Casos destacados */}
       <SelectedWorks />
 
-      {/* 9. Hubs operativos CDMX // GDL */}
+      {/* 11. Presencia CDMX // GDL */}
       <DualLocations />
 
-      {/* 10. Pie de página y enlace comercial */}
+      {/* 12. Cierre y contacto directo */}
       <FooterAgency />
     </main>
   );

@@ -24,7 +24,7 @@ export default function FooterAgency() {
 
             <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-xs font-mono text-zinc-600">
                 <div>
-                    © 2026 MUÉGANO NETWORK. TODOS LOS DERECHOS RESERVADOS.
+                    © {new Date().getFullYear()} MUÉGANO NETWORK. TODOS LOS DERECHOS RESERVADOS.
                 </div>
                 <div className="flex gap-6 uppercase">
                     <span>Ciudad de México</span>
