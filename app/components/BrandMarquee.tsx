@@ -1,122 +1,107 @@
 "use client";
 
-import { useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
+const row1 = [
+    { name: "CFE", category: "Energía Estatal", num: "01" },
+    { name: "COCA-COLA", category: "Refrescos & Retail", num: "02" },
+    { name: "DENTALFLOX", category: "Salud Especializada", num: "03" },
+    { name: "KFC", category: "Quick Service Restaurant", num: "04" },
+    { name: "KZ92", category: "Moda & Streetwear", num: "05" },
+    { name: "CHILI'S", category: "Casual Dining", num: "06" },
+    { name: "PEMEX", category: "Hidrocarburos", num: "07" },
+    { name: "URBANIA", category: "Desarrollo Inmobiliario", num: "08" },
+    { name: "GIGANTE GRUPO", category: "Consorcio Retail", num: "09" },
+];
 
-gsap.registerPlugin(ScrollTrigger);
+const row2 = [
+    { name: "RENAULT", category: "Automotriz Global", num: "10" },
+    { name: "SIDRAL MUNDET", category: "Bebidas Tradicionales", num: "11" },
+    { name: "APOLO", category: "Entretenimiento & Eventos", num: "12" },
+    { name: "GRUPO MODELO", category: "Bebidas & Consumo", num: "13" },
+    { name: "GRUPO INTEGRA", category: "Servicios Corporativos", num: "14" },
+    { name: "STA. MARÍA", category: "Agua de Manantial", num: "15" },
+    { name: "PRODIET", category: "Nutrición Clínica", num: "16" },
+    { name: "ZARA", category: "Moda Internacional", num: "17" },
+    { name: "SU-FRIDA", category: "Gastronomía Mexicana", num: "18" },
+];
 
 export default function BrandMarquee() {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const trackRef = useRef<HTMLDivElement>(null);
-
-    const brands = [
-        { name: "CFE", cat: "Energía Estatal" },
-        { name: "PEMEX", cat: "Hidrocarburos" },
-        { name: "GRUPO MODELO", cat: "Bebidas & Consumo" },
-        { name: "COCA-COLA", cat: "Refrescos & Retail" },
-        { name: "URBANIA", cat: "Desarrollo Inmobiliario" },
-        { name: "GRUPO INTEGRA", cat: "Servicios Corporativos" },
-        { name: "DENTALFLOX", cat: "Salud Especializada" },
-        { name: "GIGANTE GRUPO", cat: "Consorcio Retail" },
-        { name: "STA. MARÍA", cat: "Agua de Manantial" },
-        { name: "KFC", cat: "Quick Service Restaurant" },
-        { name: "RENAULT", cat: "Automotriz Global" },
-        { name: "PRODIET", cat: "Nutrición Clínica" },
-        { name: "KZ92", cat: "Moda & Streetwear" },
-        { name: "SIDRAL MUNDET", cat: "Bebidas Tradicionales" },
-        { name: "ZARA", cat: "Moda Internacional" },
-        { name: "CHILI'S", cat: "Casual Dining" },
-        { name: "APOLO", cat: "Entretenimiento & Eventos" },
-        { name: "SU-FRIDA", cat: "Gastronomía Mexicana" },
-        { name: "BOXING CLUB", cat: "Fitness de Alto Rendimiento" },
-        { name: "SNOB SALÓN", cat: "Belleza & Estilismo" },
-        { name: "LECHESAN", cat: "Lácteos & Alimentos" },
-        { name: "GRUPO JUMEX", cat: "Jugos & Néctares" },
-        { name: "DENTALIA", cat: "Clínicas Odontológicas" },
-        { name: "REBI", cat: "Soluciones Industriales" },
-        { name: "XIAOMI", cat: "Hardware & Ecosistema" },
-        { name: "BOSCH", cat: "Ingeniería & Tecnología" },
-    ];
-
-    // Agrupamos en 3 filas verticales por columna
-    const chunkSize = 3;
-    const brandColumns = [];
-    for (let i = 0; i < brands.length; i += chunkSize) {
-        brandColumns.push(brands.slice(i, i + chunkSize));
-    }
-
-    useGSAP(
-        () => {
-            if (!trackRef.current || !containerRef.current) return;
-
-            const totalShift = trackRef.current.scrollWidth - window.innerWidth + 100;
-
-            gsap.to(trackRef.current, {
-                x: -totalShift,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: "top top",
-                    end: "+=1200", // Distancia de scroll corta para que termine rápido
-                    scrub: 0.5,
-                    pin: true,
-                    anticipatePin: 1,
-                    invalidateOnRefresh: true,
-                },
-            });
-        },
-        { scope: containerRef }
-    );
-
     return (
-        <section ref={containerRef} className="relative z-20 bg-[#070709] w-full">
-            <div className="h-screen w-full flex flex-col justify-center px-6 sm:px-12 overflow-hidden">
-                {/* Cabecera */}
-                <div className="mb-6 flex items-center justify-between border-b border-white/10 pb-4 max-w-7xl">
-                    <div className="flex items-center gap-3">
-                        <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                        <span className="text-xs font-mono uppercase tracking-widest text-amber-400">
-                            03 // ALIANZAS ESTRATÉGICAS & CLIENTES
-                        </span>
-                    </div>
-                    <span className="text-xs font-mono text-zinc-500 uppercase tracking-widest">
-                        Scroll para avanzar →
+        <section className="relative z-10 py-16 bg-[#18191e] text-white overflow-hidden border-y border-neutral-800">
+            <style>{`
+        @keyframes scrollLeft {
+          0% { transform: translate3d(0, 0, 0); }
+          100% { transform: translate3d(-50%, 0, 0); }
+        }
+        @keyframes scrollRight {
+          0% { transform: translate3d(-50%, 0, 0); }
+          100% { transform: translate3d(0, 0, 0); }
+        }
+        .marquee-track-left {
+          display: flex;
+          width: max-content;
+          will-change: transform;
+          animation: scrollLeft 28s linear infinite;
+        }
+        .marquee-track-right {
+          display: flex;
+          width: max-content;
+          will-change: transform;
+          animation: scrollRight 28s linear infinite;
+        }
+        .marquee-track-left:hover,
+        .marquee-track-right:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+
+            {/* Encabezado */}
+            <div className="max-w-7xl mx-auto px-6 sm:px-14 mb-8 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-amber-400" />
+                    <span className="text-xs font-semibold uppercase tracking-wider text-neutral-300">
+                        03 // Alianzas Estratégicas & Clientes
                     </span>
                 </div>
+                <span className="text-[11px] font-medium uppercase tracking-wider text-neutral-500">
+                    Scroll Continuo Automático
+                </span>
+            </div>
 
-                {/* Tira en matriz horizontal (3 de alto) */}
-                <div
-                    ref={trackRef}
-                    className="flex items-center gap-5 whitespace-nowrap will-change-transform"
-                >
-                    {brandColumns.map((col, colIdx) => (
-                        <div key={colIdx} className="flex flex-col gap-4 flex-shrink-0">
-                            {col.map((b, rowIdx) => {
-                                const num = colIdx * 3 + rowIdx + 1;
-                                return (
-                                    <div
-                                        key={rowIdx}
-                                        className="group relative px-6 py-4 rounded-2xl bg-zinc-950/80 border border-white/10 hover:border-amber-400/40 transition-all duration-300 w-[240px] sm:w-[280px] h-[92px] flex flex-col justify-between"
-                                    >
-                                        <div className="flex items-center justify-between">
-                                            <span className="text-[10px] font-mono text-zinc-600 group-hover:text-amber-400 transition-colors">
-                                                {num < 10 ? `0${num}` : num}
-                                            </span>
-                                            <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-wider truncate max-w-[160px]">
-                                                {b.cat}
-                                            </span>
-                                        </div>
+            {/* Tira 1: Hacia la izquierda */}
+            <div className="overflow-hidden w-full mb-4">
+                <div className="marquee-track-left gap-4">
+                    {[...row1, ...row1, ...row1].map((b, i) => (
+                        <div
+                            key={`r1-${b.name}-${i}`}
+                            className="w-64 p-5 rounded-xl bg-neutral-900/90 border border-neutral-800 flex flex-col justify-between shrink-0 select-none"
+                        >
+                            <div className="flex justify-between items-center text-[10px] text-neutral-500 font-semibold uppercase tracking-wider">
+                                <span>{b.num}</span>
+                                <span className="truncate ml-2 text-neutral-400">{b.category}</span>
+                            </div>
+                            <span className="text-base font-black uppercase tracking-tight text-white mt-3">
+                                {b.name}
+                            </span>
+                        </div>
+                    ))}
+                </div>
+            </div>
 
-                                        <h3 className="text-lg sm:text-xl font-bold font-mono tracking-tight text-zinc-200 group-hover:text-amber-400 transition-colors uppercase truncate">
-                                            {b.name}
-                                        </h3>
-
-                                        <div className="h-[2px] w-6 bg-zinc-800 group-hover:w-full group-hover:bg-amber-400 transition-all duration-300" />
-                                    </div>
-                                );
-                            })}
+            {/* Tira 2: Hacia la derecha */}
+            <div className="overflow-hidden w-full">
+                <div className="marquee-track-right gap-4">
+                    {[...row2, ...row2, ...row2].map((b, i) => (
+                        <div
+                            key={`r2-${b.name}-${i}`}
+                            className="w-64 p-5 rounded-xl bg-neutral-900/90 border border-neutral-800 flex flex-col justify-between shrink-0 select-none"
+                        >
+                            <div className="flex justify-between items-center text-[10px] text-neutral-500 font-semibold uppercase tracking-wider">
+                                <span>{b.num}</span>
+                                <span className="truncate ml-2 text-neutral-400">{b.category}</span>
+                            </div>
+                            <span className="text-base font-black uppercase tracking-tight text-white mt-3">
+                                {b.name}
+                            </span>
                         </div>
                     ))}
                 </div>

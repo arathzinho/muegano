@@ -1,15 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowUpRight } from "lucide-react";
 
 export default function Navbar() {
-    const [timeCDMX, setTimeCDMX] = useState("");
+    const [time, setTime] = useState("");
 
     useEffect(() => {
         const updateTime = () => {
             const now = new Date();
-            setTimeCDMX(
+            setTime(
                 now.toLocaleTimeString("es-MX", {
                     timeZone: "America/Mexico_City",
                     hour: "2-digit",
@@ -25,49 +24,43 @@ export default function Navbar() {
     }, []);
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 px-6 py-5 pointer-events-none">
-            <div className="max-w-7xl mx-auto flex items-center justify-between">
-                {/* Brand / Logo */}
-                <div className="pointer-events-auto flex items-center gap-4 px-4 py-2.5 rounded-full bg-zinc-950/80 border border-white/10 backdrop-blur-xl">
-                    <div className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse" />
-                    <span className="font-bold tracking-widest text-sm uppercase text-white font-mono">
-                        MUÉGANO
-                    </span>
-                    <span className="text-zinc-600 font-mono text-xs">|</span>
-                    <span className="font-mono text-xs text-zinc-400">
-                        MEX [CDMX // GDL] {timeCDMX && `• ${timeCDMX}`}
-                    </span>
-                </div>
-
-                {/* Links editoriales */}
-                <nav className="pointer-events-auto hidden md:flex items-center gap-1 px-3 py-1.5 rounded-full bg-zinc-950/80 border border-white/10 backdrop-blur-xl text-xs font-mono uppercase tracking-wider text-zinc-400">
-                    <a href="#manifiesto" className="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-all">
-                        01 // Manifiesto
-                    </a>
-                    <a href="#capacidades" className="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-all">
-                        02 // Capacidades
-                    </a>
-                    <a href="#casos" className="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-all">
-                        03 // Casos
-                    </a>
-                    <a href="#contacto" className="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-all">
-                        04 // Enlace
-                    </a>
-                </nav>
-
-                {/* CTA Directo */}
-                <div className="pointer-events-auto">
-                    <a
-                        href="https://wa.me/525624860041"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-semibold text-xs uppercase tracking-wider hover:bg-amber-400 transition-all shadow-xl shadow-amber-400/10"
-                    >
-                        Línea Directa
-                        <ArrowUpRight className="w-3.5 h-3.5" />
-                    </a>
-                </div>
+        <header className="fixed top-0 left-0 right-0 z-50 px-6 sm:px-12 py-5 flex items-center justify-between pointer-events-none">
+            {/* Marca & Hora */}
+            <div className="pointer-events-auto flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/85 backdrop-blur-md border border-neutral-200/90 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
+                <span className="w-2 h-2 rounded-full bg-neutral-900" />
+                <span className="font-bold text-xs tracking-wider text-neutral-900 uppercase">
+                    MUÉGANO
+                </span>
+                <span className="text-xs text-neutral-500 font-normal border-l border-neutral-200 pl-3">
+                    CDMX // GDL {time && `• ${time}`}
+                </span>
             </div>
+
+            {/* Menú de Enlaces */}
+            <nav className="pointer-events-auto hidden md:flex items-center gap-8 px-7 py-2.5 rounded-full bg-white/85 backdrop-blur-md border border-neutral-200/90 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
+                {[
+                    { label: "Manifiesto", href: "#manifiesto" },
+                    { label: "Capacidades", href: "#capacidades" },
+                    { label: "Casos", href: "#casos" },
+                    { label: "Enlace", href: "#contacto" },
+                ].map((item) => (
+                    <a
+                        key={item.label}
+                        href={item.href}
+                        className="text-xs font-medium text-neutral-600 hover:text-neutral-950 transition-colors uppercase tracking-wider"
+                    >
+                        {item.label}
+                    </a>
+                ))}
+            </nav>
+
+            {/* Botón Acción */}
+            <a
+                href="mailto:contacto@muegano.com"
+                className="pointer-events-auto px-6 py-2.5 rounded-full bg-neutral-950 text-white text-xs font-semibold hover:bg-neutral-800 transition-all shadow-sm tracking-wider uppercase"
+            >
+                Línea Directa ↗
+            </a>
         </header>
     );
 }

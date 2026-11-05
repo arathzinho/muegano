@@ -1,39 +1,50 @@
 "use client";
 
-import { ArrowDownRight } from "lucide-react";
-
 export default function HeroVisual() {
     return (
-        <section className="relative z-10 min-h-screen flex flex-col justify-end pb-24 px-6 max-w-7xl mx-auto pt-36">
-            <div className="max-w-4xl">
-                <div className="inline-flex items-center gap-3 px-3 py-1.5 rounded-full border border-amber-500/20 bg-amber-500/5 text-amber-400 text-xs font-mono tracking-widest uppercase mb-8 backdrop-blur-md">
-                    <span>Creative Intelligence & Production Unit</span>
-                </div>
+        <section className="relative min-h-screen w-full flex flex-col justify-between px-6 sm:px-14 pt-32 pb-14 z-10 pointer-events-none">
+            {/* Etiqueta superior limpia */}
+            <div className="pointer-events-auto">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neutral-100 border border-neutral-200 text-neutral-800 text-xs font-semibold tracking-wider uppercase">
+                    <span className="w-2 h-2 rounded-full bg-neutral-900" />
+                    Creative Intelligence & Production Unit
+                </span>
+            </div>
 
-                <h1 className="text-6xl sm:text-8xl lg:text-9xl font-black tracking-tighter leading-[0.88] uppercase text-white mb-10 select-none">
-                    Unimos <br />
-                    piezas. <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-200 to-white">
-                        Multiplicamos
+            {/* Título Principal en Negro Fuerte */}
+            <div className="max-w-5xl my-auto py-10 pointer-events-auto">
+                <h1 className="text-6xl sm:text-8xl lg:text-9xl font-black tracking-tight text-neutral-950 leading-[0.92] uppercase">
+                    UNIMOS <br />
+                    PIEZAS. <br />
+                    <span className="text-amber-500">
+                        MULTIPLICAMOS
                     </span> <br />
-                    impacto.
+                    IMPACTO.
                 </h1>
 
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end pt-4 border-t border-white/10">
-                    <p className="md:col-span-7 text-zinc-400 text-base sm:text-lg leading-relaxed font-light">
-                        No concebimos la estrategia como islas separadas. Fusionamos narrativa cinematográfica galardonada con modelos de inteligencia artificial y distribución algorítmica para firmas que lideran su categoría.
-                    </p>
+                <p className="mt-8 max-w-xl text-neutral-700 text-base sm:text-lg font-normal leading-relaxed">
+                    No concebimos la estrategia como islas separadas. Fusionamos narrativa
+                    cinematográfica galardonada con modelos de inteligencia artificial y
+                    distribución algorítmica para firmas que lideran su categoría.
+                </p>
 
-                    <div className="md:col-span-5 flex items-center md:justify-end gap-4">
-                        <a
-                            href="#casos"
-                            className="inline-flex items-center gap-2 text-xs font-mono tracking-widest text-zinc-400 hover:text-amber-400 uppercase transition-colors"
-                        >
-                            Explorar Proyectos
-                            <ArrowDownRight className="w-4 h-4 text-amber-400" />
-                        </a>
-                    </div>
+                <div className="mt-10 flex items-center gap-6">
+                    <a
+                        href="#casos"
+                        className="px-6 py-3 rounded-full bg-neutral-950 text-white text-xs font-semibold tracking-wider uppercase hover:bg-neutral-800 transition-all shadow-sm"
+                    >
+                        Explorar Proyectos ↘
+                    </a>
+                    <span className="text-xs text-neutral-500 font-semibold tracking-wider uppercase">
+                        Archivo de casos [2024 — 2026]
+                    </span>
                 </div>
+            </div>
+
+            {/* Pie del hero */}
+            <div className="pointer-events-auto flex items-center justify-between border-t border-neutral-200 pt-6 text-xs text-neutral-500 uppercase tracking-wider font-semibold">
+                <span>01 // Manifiesto de Dirección</span>
+                <span>Desliza para explorar</span>
             </div>
         </section>
     );
